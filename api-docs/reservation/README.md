@@ -38,9 +38,9 @@ GET /api/movies/{movieId}
 
 ### · request
 
-| Parameter | Required | Description | Forms                          |
-|:----------|:---------|:------------|:-------------------------------|
-| movieId   | true     | 영화 아이디      | |
+| Parameter | Required | Description | Forms |
+|:----------|:---------|:------------|:------|
+| movieId   | true     | 영화 아이디      |       |
 
 ### · response
 
@@ -56,11 +56,11 @@ GET /api/movies/{movieId}
 
 | Path        | Type   | Description   |
 |:------------|:-------|:--------------|
-| movieId    | Number | 영화 아이디        |
-| title      | String | 영화 제목         |
-| description| String | 영화 설명         |
-| bannerUrl  | String | 영화 배너 이미지 URL |
-| genre      | String | 영화 장르         |
+| movieId     | Number | 영화 아이디        |
+| title       | String | 영화 제목         |
+| description | String | 영화 설명         |
+| bannerUrl   | String | 영화 배너 이미지 URL |
+| genre       | String | 영화 장르         |
 
 
 ## 🔎 예매 차트 목록 조회
@@ -135,7 +135,79 @@ GET /api/theaters
 
 ## 상영 목록 조회
 
+```http request
+GET /showings/movies/{movieId}?theater={theaterId}&date={date}
+```
+
+### · request
+
+| Parameter | Required | Description | Forms       |
+|:----------|:---------|:------------|:------------|
+| movieId   | true     | 영화 아이디      |             |
+| theaterId | false    | 상영관 아이디     | 없을 시 모든 상영관 |
+| date      | false    | 조회할 상영일     | 기본값=now()   |
+
+### · response
+
+```json
+{
+  "showings": [
+    {
+      "theaterId": 1,
+      "movieId": 1,
+      "showingId": 1,
+      "showingStartAt": "2000-01-01 10:00:00",
+      "showingEndAt": "2000-01-01 12:30:00",
+      "seatTotalCount": 100,
+      "seatRemainingCount": 30
+    }
+  ]
+}
+```
+
+| Path                           | Type     | Description |
+|:-------------------------------|:---------|:------------|
+| showings[i].showingId          | Number   | 상영 아이디      |
+| showings[i].theaterId          | Number   | 상영관 아이디     |
+| showings[i].movieId            | Number   | 영화 아이디      |
+| showings[i].showingStartAt     | DateTime | 상영 시작 일시    |
+| showings[i].showingEndAt       | DateTime | 상영 종료 일시    |
+| showings[i].seatTotalCount     | Number   | 상영관 총 좌석 수  |
+| showings[i].seatRemainingCount | Number   | 상영 잔여 좌석 수  |
+
+
+
 ## 좌석 정보 조회
+
+```http request
+GET /showings/{showingId}/seats
+```
+
+### · request
+
+| Parameter | Required | Description | Forms       |
+|:----------|:---------|:------------|:------------|
+| showingId | true     | 상영 아이디      |             |
+
+### · response
+
+```json
+{
+  "seats": [
+    {
+      "row": "A",
+      "column": 1,
+      "isAvailable": true
+    }
+  ]
+}
+```
+
+| Path                 | Type    | Description |
+|:---------------------|:--------|:------------|
+| seats[i].row         | String  | 좌석 열        |
+| seats[i].column      | Number  | 좌석 행        |
+| seats[i].isAvailable | Boolean | 좌석 사용 가능 여부 |
 
 ## 사용자 예매 내역 조회
 

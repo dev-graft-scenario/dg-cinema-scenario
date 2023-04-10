@@ -55,6 +55,19 @@ DEV-GRAFT가 영화관 운영을 시작했습니다!
 
 ## Spec
 
+### 📄 Schema
+
+![Image](https://user-images.githubusercontent.com/22608825/230760951-27f90bea-c1af-4de4-a6a5-babb5d0a1f6c.png)
+
+### 🎈 EventStorming
+
+![Image](https://user-images.githubusercontent.com/22608825/230773112-41cd98ad-aff9-4519-b11b-e26e4478dc0d.png)
+
+### BorisDiagram
+
+### Package 구조
+
+### [API 명세](api-docs/README.md)
 
 ### **프로젝트 구성**
 
@@ -76,59 +89,3 @@ DEV-GRAFT가 영화관 운영을 시작했습니다!
 | Name | Desc |
 |:-----|:-----|
 | H2   |      |
-
-### 📄 Schema
-
-![Image](https://user-images.githubusercontent.com/22608825/230760951-27f90bea-c1af-4de4-a6a5-babb5d0a1f6c.png)
-
-### 🎈 EventStorming
-
-![Image](https://user-images.githubusercontent.com/22608825/230773112-41cd98ad-aff9-4519-b11b-e26e4478dc0d.png)
-
-### BorisDiagram
-
-### Package 구조
-
-### [API 명세](api-docs/README.md)
-
-## 아래는 fork 이후 직접 작성해주세요.
-
-### :pushpin: 참여 팀원
-|     [팀원 닉네임](팀원-프로필-주소)      |
-|:----------------------------:|
-|  <img src="" width="100px">  |
-| BE, FE, IOS, ANDROID, DESIGN |
-|            한줄 설명             |
-
---- 
-### :screwdriver: 기술 스택
-<p align="center">
-<img alt="" src="https://img.shields.io/badge/TypeScript-569A31?style=for-the-badge&logo=JavaScript&logoColor=white">
-<img alt="" src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white">
-<img alt="" src="https://img.shields.io/badge/JAVA-007396?style=for-the-badge&logo=java&logoColor=white">
-<img alt="" src="https://img.shields.io/badge/Kotlin-2496ED?style=for-the-badge&logo=kotlin&logoColor=orange">
-<img alt="" src="https://img.shields.io/badge/ReactNative-2496ED?style=for-the-badge&logo=react&logoColor=white">
-</p>
-<p align="center">
-<img alt="" src="https://img.shields.io/badge/IOS-white?style=for-the-badge&logo=apple&logoColor=black">
-<img alt="" src="https://img.shields.io/badge/Android-green?style=for-the-badge&logo=android&logoColor=white">
-<img alt="" src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
-<img alt="" src="https://img.shields.io/badge/Testing Library-E33332?style=for-the-badge&logo=testingLibrary&logoColor=white">
-<img alt="" src="https://img.shields.io/badge/React Router-CA4245?style=for-the-badge&logo=reactRouter&logoColor=white">
-</p>
-<p align="center">
-<img alt="" src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=white">
-<img alt="" src="https://img.shields.io/badge/JUnit5-25A162?style=for-the-badge&logo=JUnit5&logoColor=white">
-<img alt="" src="https://img.shields.io/badge/mariaDB-003545?style=for-the-badge&logo=mariaDB&logoColor=white">
-<img alt="" src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white"> 
-<img alt="" src="https://img.shields.io/badge/Amazon AWS-232F3E?style=for-the-badge&logo=Amazon AWS&logoColor=white">
-</p>
-<p align="center">
-<img alt="" src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white">
-<img alt="" src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=NGINX&logoColor=white">  
-<img alt="" src="https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=Jenkins&logoColor=white"> 
-<img alt="" src="https://img.shields.io/badge/SonarQube-4E9BCD?style=for-the-badge&logo=SonarQube&logoColor=white"> 
-<img alt="" src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white"> 
-</p>
-
-### 
