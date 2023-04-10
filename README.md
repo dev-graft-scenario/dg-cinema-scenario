@@ -89,6 +89,8 @@ DEV-GRAFT가 영화관 운영을 시작했습니다!
 
 ### Package 구조
 
+### [API 명세](api-docs/README.md)
+
 ## 아래는 fork 이후 직접 작성해주세요.
 
 ### :pushpin: 참여 팀원
