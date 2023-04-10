@@ -132,7 +132,6 @@ GET /api/theaters
 | theaters[i].theaterId        | Number | 상영관 아이디     |
 | theaters[i].name             | String | 상영관 이름      |
 
-
 ## 상영 목록 조회
 
 ```http request
