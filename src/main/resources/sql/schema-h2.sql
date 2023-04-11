@@ -28,12 +28,12 @@ CREATE TABLE IF NOT EXISTS "seat"
 (
     id        INT AUTO_INCREMENT PRIMARY KEY,
     theaterId INT          NOT NULL,
-    row       VARCHAR(255) NOT NULL,
-    column    INT          NOT NULL
+    seatRow       VARCHAR(255) NOT NULL,
+    seatColumn    INT          NOT NULL
 );
 
 CREATE INDEX idx_seat_theater ON "seat" (theaterId);
-CREATE INDEX idx_seat_row_column ON "seat" (row, column);
+CREATE INDEX idx_seat_row_column ON "seat" (seatRow, seatColumn);
 
 CREATE TABLE IF NOT EXISTS "showing"
 (
