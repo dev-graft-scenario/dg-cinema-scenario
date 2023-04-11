@@ -65,13 +65,14 @@ CREATE INDEX idx_reservation_seat ON "reservation" (seatId);
 
 CREATE TABLE IF NOT EXISTS "payment"
 (
-    id            INT AUTO_INCREMENT PRIMARY KEY,
-    reservationId INT            NOT NULL,
-    status        VARCHAR(255)   NOT NULL,
-    amount        decimal(10, 2) NOT NULL,
-    paymentMethod VARCHAR(255)   NOT NULL,
-    createAt      timestamp      NOT NULL,
-    completedAt   timestamp      NOT NULL
+    id              INT AUTO_INCREMENT PRIMARY KEY,
+    reservationId   INT            NOT NULL,
+    status          VARCHAR(255)   NOT NULL,
+    amount          decimal(10, 2) NOT NULL,
+    paymentMethod   VARCHAR(255)   NOT NULL,
+    createAt        timestamp      NOT NULL,
+    paymentExpireAt timestamp      NOT NULL,
+    completedAt     timestamp
 );
 
 CREATE INDEX idx_payment_reservation ON "payment" (reservationId);
