@@ -1,4 +1,4 @@
-package devgraft.dgcinema
+package devgraft.dgcinema.domain
 class Seat (
     val id: Long,
     val theaterId: Long,

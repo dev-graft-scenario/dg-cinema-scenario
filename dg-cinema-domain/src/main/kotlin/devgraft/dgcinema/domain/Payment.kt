@@ -1,4 +1,4 @@
-package devgraft.dgcinema
+package devgraft.dgcinema.domain
 
 import java.math.BigDecimal
 import java.time.LocalDateTime

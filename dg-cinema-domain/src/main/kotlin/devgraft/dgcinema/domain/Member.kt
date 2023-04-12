@@ -1,4 +1,4 @@
-package devgraft.dgcinema
+package devgraft.dgcinema.domain
 
 class Member(
     val id: Long,
