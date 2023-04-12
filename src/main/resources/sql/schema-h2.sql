@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS "user"
+CREATE TABLE IF NOT EXISTS member
 (
     id       INT AUTO_INCREMENT PRIMARY KEY,
     email    VARCHAR(255) NOT NULL,
@@ -6,9 +6,9 @@ CREATE TABLE IF NOT EXISTS "user"
     phone    VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
-CREATE INDEX idx_user_email ON "user" (email);
+CREATE INDEX idx_member_email ON member (email);
 
-CREATE TABLE IF NOT EXISTS "movie"
+CREATE TABLE IF NOT EXISTS movie
 (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     title       VARCHAR(255) NOT NULL,
@@ -18,24 +18,24 @@ CREATE TABLE IF NOT EXISTS "movie"
     duration    INT          NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS "theater"
+CREATE TABLE IF NOT EXISTS theater
 (
     id   INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS "seat"
+CREATE TABLE IF NOT EXISTS seat
 (
-    id        INT AUTO_INCREMENT PRIMARY KEY,
-    theaterId INT          NOT NULL,
-    seatRow       VARCHAR(255) NOT NULL,
-    seatColumn    INT          NOT NULL
+    id         INT AUTO_INCREMENT PRIMARY KEY,
+    theaterId  INT          NOT NULL,
+    seatRow    VARCHAR(255) NOT NULL,
+    seatColumn INT          NOT NULL
 );
 
-CREATE INDEX idx_seat_theater ON "seat" (theaterId);
-CREATE INDEX idx_seat_row_column ON "seat" (seatRow, seatColumn);
+CREATE INDEX idx_seat_theater ON seat (theaterId);
+CREATE INDEX idx_seat_row_column ON seat (seatRow, seatColumn);
 
-CREATE TABLE IF NOT EXISTS "showing"
+CREATE TABLE IF NOT EXISTS showing
 (
     id        INT AUTO_INCREMENT PRIMARY KEY,
     movieId   INT            NOT NULL,
@@ -46,24 +46,24 @@ CREATE TABLE IF NOT EXISTS "showing"
     price     decimal(10, 2) NOT NULL
 );
 
-CREATE INDEX idx_showing_movie ON "showing" (movieId);
-CREATE INDEX idx_showing_theater ON "showing" (theaterId);
-CREATE INDEX idx_showing_date ON "showing" (showDate);
+CREATE INDEX idx_showing_movie ON showing (movieId);
+CREATE INDEX idx_showing_theater ON showing (theaterId);
+CREATE INDEX idx_showing_date ON showing (showDate);
 
-CREATE TABLE IF NOT EXISTS "reservation"
+CREATE TABLE IF NOT EXISTS reservation
 (
     id        INT AUTO_INCREMENT PRIMARY KEY,
-    userId    INT       NOT NULL,
+    memberId  INT       NOT NULL,
     showingId INT       NOT NULL,
     seatId    INT       NOT NULL,
     createAt  timestamp NOT NULL
 );
 
-CREATE INDEX idx_reservation_user ON "reservation" (userId);
-CREATE INDEX idx_reservation_showing ON "reservation" (showingId);
-CREATE INDEX idx_reservation_seat ON "reservation" (seatId);
+CREATE INDEX idx_reservation_member ON reservation (memberId);
+CREATE INDEX idx_reservation_showing ON reservation (showingId);
+CREATE INDEX idx_reservation_seat ON reservation (seatId);
 
-CREATE TABLE IF NOT EXISTS "payment"
+CREATE TABLE IF NOT EXISTS payment
 (
     id              INT AUTO_INCREMENT PRIMARY KEY,
     reservationId   INT            NOT NULL,
@@ -75,4 +75,4 @@ CREATE TABLE IF NOT EXISTS "payment"
     completedAt     timestamp
 );
 
-CREATE INDEX idx_payment_reservation ON "payment" (reservationId);
+CREATE INDEX idx_payment_reservation ON payment (reservationId);
