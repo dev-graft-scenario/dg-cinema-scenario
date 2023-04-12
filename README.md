@@ -57,7 +57,7 @@ DEV-GRAFT가 영화관 운영을 시작했습니다!
 
 ### 📄 Schema
 
-![Image](https://user-images.githubusercontent.com/22608825/230760951-27f90bea-c1af-4de4-a6a5-babb5d0a1f6c.png)
+<img width="765" alt="image" src="https://user-images.githubusercontent.com/22608825/231322072-c59872d0-6a4f-4ca9-8cbf-a96ca7c0e44c.png">
 
 ### 🎈 EventStorming
 
