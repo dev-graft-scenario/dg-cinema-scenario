@@ -5,4 +5,5 @@ import java.util.Optional
 
 interface MoviePort {
     fun findById(movieId:Long) : Optional<Movie>
+    fun findAll(): List<Movie>
 }

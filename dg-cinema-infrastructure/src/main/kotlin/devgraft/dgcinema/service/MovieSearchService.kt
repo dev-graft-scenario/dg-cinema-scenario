@@ -13,6 +13,6 @@ internal class MovieSearchService(private val moviePort: MoviePort) : MovieSearc
     }
 
     override fun getMovieList(): List<Movie> {
-        TODO("Not yet implemented")
+        return moviePort.findAll()
     }
 }

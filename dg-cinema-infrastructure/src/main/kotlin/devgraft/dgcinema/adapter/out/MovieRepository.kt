@@ -6,4 +6,5 @@ import java.util.Optional
 @org.springframework.stereotype.Repository
 internal interface MovieRepository : Repository<MovieEntity, Long> {
     fun findById(movieId:Long): Optional<MovieEntity>
+    fun findAll() : List<MovieEntity>
 }
