@@ -81,11 +81,4 @@ DEV-GRAFT가 영화관 운영을 시작했습니다!
 
 | Name         | Desc      |
 |:-------------|:----------|
-| Architecture | Hexagonal |
 | DB           | H2        |
-
-### **기본 의존성**
-
-| Name | Desc |
-|:-----|:-----|
-| H2   |      |
