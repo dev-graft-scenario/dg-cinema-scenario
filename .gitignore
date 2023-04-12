@@ -133,7 +133,6 @@ cmake-build-*/
 *.iws
 
 # IntelliJ
-out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -1131,7 +1130,6 @@ proguard/
 # Android Studio
 /*/build/
 /*/local.properties
-/*/out
 /*/*/build
 /*/*/production
 .navigation/

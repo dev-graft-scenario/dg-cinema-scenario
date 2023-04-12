@@ -1,8 +1,8 @@
 package devgraft.dgcinema.service
 
-import devgraft.dgcinema.domain.Movie
-import devgraft.dgcinema.port.`in`.MovieSearchUseCase
-import devgraft.dgcinema.port.out.MoviePort
+import devgraft.dgcinema.domain.model.Movie
+import devgraft.dgcinema.domain.ports.`in`.MovieSearchUseCase
+import devgraft.dgcinema.domain.ports.output.MoviePort
 import org.springframework.stereotype.Service
 
 @Service

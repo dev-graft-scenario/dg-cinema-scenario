@@ -1,4 +1,4 @@
-package devgraft.dgcinema.domain
+package devgraft.dgcinema.domain.model
 
 class Theater(
     val id: Long,

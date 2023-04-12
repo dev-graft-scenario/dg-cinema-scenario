@@ -1,6 +1,6 @@
-package devgraft.dgcinema.port.`in`
+package devgraft.dgcinema.domain.ports.`in`
 
-import devgraft.dgcinema.domain.Movie
+import devgraft.dgcinema.domain.model.Movie
 
 interface MovieSearchUseCase {
     fun getMovie(movieId:Long) : Movie

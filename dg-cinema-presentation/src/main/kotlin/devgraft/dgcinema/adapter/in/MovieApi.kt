@@ -1,7 +1,7 @@
 package devgraft.dgcinema.adapter.`in`
 
-import devgraft.dgcinema.domain.Movie
-import devgraft.dgcinema.port.`in`.MovieSearchUseCase
+import devgraft.dgcinema.domain.model.Movie
+import devgraft.dgcinema.domain.ports.`in`.MovieSearchUseCase
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
