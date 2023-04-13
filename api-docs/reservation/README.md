@@ -106,7 +106,7 @@ GET /api/showings/charts?page={page}?size={size}?sort={sort}
 | showings[i].genre            | String | 영화 장르         |
 | showings[i].showingStartDate | Date   | 상영 시작일        |
 | showings[i].showingEndDate   | Date   | 상영 종료일        |
-| showings[i].rate             | Double | 영화 장르         |
+| showings[i].rate             | Double | 영화          |
 
 ## 상영관 목록 조회
 
@@ -347,7 +347,7 @@ GET /reservations/{reservationId}
 | paymentStatus  | String   | 결제 상태       | (Completed=완료, Waiting=대기 중, Expired=만료됨) |
 
 
-## 영화 예매율 조회
+## 영화 예매율 목록 조회
 
 ```http request
 GET /showings/reservations/rates
@@ -372,5 +372,39 @@ GET /showings/reservations/rates
 
 | Path            | Type     | Description |
 |:----------------|:---------|:------------|
-| reservationId   | Number   | 예매 아이디      |
-| paymentExpireAt | DateTime | 결제 만료 일시    |
+| rates   | Array   | 예매율 목록      |
+| rates[i].movieId   | Number   | 영화 아이디      |
+| rates[i].movieName   | String   | 영화 이름      |
+| rates[i].movieBanner   | String   | 영화 배너 URL      |
+| rates[i].rank   | Number   | 예매율 순위      |
+| rates[i].rate   | Number   | 예매율      |
+| rates[i].reservationTotalCount   | Number   | 해당 영화 총 예매 횟수      |
+
+## 영화 예매율 조회
+
+```http request
+GET /showings/reservations/rates/{movieId}
+```
+
+### · response
+
+```json
+{
+  "movieId": 1,
+  "movieName": "movieName",
+  "movieBanner": "movieBanner",
+  "rank": 1,
+  "rate": 36.1,
+  "reservationTotalCount": 100000
+}
+```
+
+| Path            | Type     | Description |
+|:----------------|:---------|:------------|
+| movieId   | Number   | 영화 아이디      |
+| movieName   | String   | 영화 이름      |
+| movieBanner   | String   | 영화 배너 URL      |
+| rank   | Number   | 예매율 순위      |
+| rate   | Number   | 예매율      |
+| reservationTotalCount   | Number   | 해당 영화 총 예매 횟수      |
+
