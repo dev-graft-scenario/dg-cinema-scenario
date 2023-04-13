@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS reservation
     memberId  INT       NOT NULL,
     showingId INT       NOT NULL,
     seatId    INT       NOT NULL,
-    createAt  timestamp NOT NULL
+    createdAt  timestamp NOT NULL
 );
 
 CREATE INDEX idx_reservation_member ON reservation (memberId);
