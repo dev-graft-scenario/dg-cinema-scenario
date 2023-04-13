@@ -1,8 +1,8 @@
-package devgraft.dgcinema.adapter.`in`
+package devgraft.dgcinema.adapter.`in`.query
 
 import capture
 import devgraft.dgcinema.domain.model.anMovie
-import devgraft.dgcinema.domain.ports.`in`.MovieSearchUseCase
+import devgraft.dgcinema.domain.ports.`in`.query.MovieSearchUseCase
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -24,32 +24,24 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 
 @ExtendWith(MockitoExtension::class)
-class MovieApiTest {
+class MovieQueryApiTest {
     private lateinit var mockMvc:MockMvc
     @InjectMocks
-    private lateinit var movieApi: MovieApi
+    private lateinit var movieQueryApi: MovieQueryApi
     @Mock
     private lateinit var mockMovieSearchUseCase: MovieSearchUseCase
     @Captor
     private lateinit var movieIdCaptor: ArgumentCaptor<Long>
     @BeforeEach
     fun setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(movieApi).build()
+        mockMvc = MockMvcBuilders.standaloneSetup(movieQueryApi).build()
         Mockito.lenient().`when`(mockMovieSearchUseCase.getMovie(anyLong())).thenReturn(anMovie().build())
     }
 
     @Test
-    fun searchMovie_is_status_ok() {
+    fun searchMovie_status_is_ok() {
         mockMvc.perform(get("/movies/{movieId}", 1))
                 .andExpect(status().isOk)
-    }
-
-    @Test
-    fun searchMovie_passes_parameter_to_useCase() {
-        mockMvc.perform(get("/movies/{movieId}", 1))
-
-        verify(mockMovieSearchUseCase, times(1)).getMovie(capture(movieIdCaptor))
-        Assertions.assertThat(movieIdCaptor.value).isEqualTo(1)
     }
 
     @Test
@@ -67,7 +59,15 @@ class MovieApiTest {
     }
 
     @Test
-    fun searchMovieList_is_status_ok() {
+    fun searchMovie_passes_parameter_to_useCase() {
+        mockMvc.perform(get("/movies/{movieId}", 1))
+
+        verify(mockMovieSearchUseCase, times(1)).getMovie(capture(movieIdCaptor))
+        Assertions.assertThat(movieIdCaptor.value).isEqualTo(1)
+    }
+
+    @Test
+    fun searchMovieList_status_is_ok() {
         mockMvc.perform(get("/movies"))
             .andExpect(status().isOk)
     }

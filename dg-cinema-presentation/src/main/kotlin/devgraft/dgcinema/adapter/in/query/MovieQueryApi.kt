@@ -1,22 +1,22 @@
-package devgraft.dgcinema.adapter.`in`
+package devgraft.dgcinema.adapter.`in`.query
 
 import devgraft.dgcinema.domain.model.Movie
-import devgraft.dgcinema.domain.ports.`in`.MovieSearchUseCase
+import devgraft.dgcinema.domain.ports.`in`.query.MovieSearchUseCase
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 import java.util.stream.Collectors
 
 @RestController
-class MovieApi(private val movieSearchUseCase: MovieSearchUseCase) {
+class MovieQueryApi(private val movieSearchUseCase: MovieSearchUseCase) {
 
     @GetMapping("movies")
-    fun searchMovieList(): MovieSearchListResponse {
+    private fun searchMovieList(): MovieSearchListResponse {
         return toResponse(movieSearchUseCase.getMovieList())
     }
 
     @GetMapping("movies/{movieId}")
-    fun searchMovie(@PathVariable(name = "movieId") movieId: Long): MovieSearchResponse {
+    private fun searchMovie(@PathVariable(name = "movieId") movieId: Long): MovieSearchResponse {
         return toResponse(movieSearchUseCase.getMovie(movieId))
     }
 }
@@ -39,8 +39,8 @@ private fun toResponse(movies: List<Movie>): MovieSearchListResponse {
             movies = movieList
     )
 }
-data class MovieSearchListResponse(val movies: List<MovieSearchResponse>)
-data class MovieSearchResponse(
+private data class MovieSearchListResponse(val movies: List<MovieSearchResponse>)
+private data class MovieSearchResponse(
         val movieId: Long,
         val title: String,
         val description: String,

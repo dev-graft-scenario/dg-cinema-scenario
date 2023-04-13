@@ -1,4 +1,4 @@
-package devgraft.dgcinema.service
+package devgraft.dgcinema.service.query
 
 import capture
 import devgraft.dgcinema.domain.model.anMovie
