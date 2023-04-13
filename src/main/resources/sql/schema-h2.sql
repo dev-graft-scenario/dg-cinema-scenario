@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS member
     phone    VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
+
 CREATE INDEX idx_member_email ON member (email);
 
 CREATE TABLE IF NOT EXISTS movie
@@ -15,6 +16,7 @@ CREATE TABLE IF NOT EXISTS movie
     description VARCHAR(255) NOT NULL,
     bannerUrl   VARCHAR(255) NOT NULL,
     genre       VARCHAR(255) NOT NULL,
+    releaseDate date         NOT NULL,
     duration    INT          NOT NULL
 );
 
@@ -24,22 +26,31 @@ CREATE TABLE IF NOT EXISTS theater
     name VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS auditorium
+(
+    id   INT AUTO_INCREMENT PRIMARY KEY,
+    theaterId  INT          NOT NULL,
+    name VARCHAR(255)       NOT NULL
+);
+
+CREATE INDEX idx_auditorium_theater ON auditorium (theaterId);
+
 CREATE TABLE IF NOT EXISTS seat
 (
     id         INT AUTO_INCREMENT PRIMARY KEY,
-    theaterId  INT          NOT NULL,
+    auditoriumId  INT          NOT NULL,
     seatRow    VARCHAR(255) NOT NULL,
     seatColumn INT          NOT NULL
 );
 
-CREATE INDEX idx_seat_theater ON seat (theaterId);
+CREATE INDEX idx_seat_auditorium ON seat (auditoriumId);
 CREATE INDEX idx_seat_row_column ON seat (seatRow, seatColumn);
 
 CREATE TABLE IF NOT EXISTS showing
 (
     id        INT AUTO_INCREMENT PRIMARY KEY,
     movieId   INT            NOT NULL,
-    theaterId INT            NOT NULL,
+    auditoriumId INT            NOT NULL,
     showDate  date           NOT NULL,
     startTime time           NOT NULL,
     endTime   time           NOT NULL,
@@ -47,7 +58,7 @@ CREATE TABLE IF NOT EXISTS showing
 );
 
 CREATE INDEX idx_showing_movie ON showing (movieId);
-CREATE INDEX idx_showing_theater ON showing (theaterId);
+CREATE INDEX idx_showing_auditorium ON showing (auditoriumId);
 CREATE INDEX idx_showing_date ON showing (showDate);
 
 CREATE TABLE IF NOT EXISTS reservation
