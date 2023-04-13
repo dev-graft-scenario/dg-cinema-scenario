@@ -65,4 +65,25 @@ class MovieApiTest {
                 .andExpect(jsonPath("$.genre").value(givenMovie.genre))
                 .andExpect(jsonPath("$.duration").value(givenMovie.duration))
     }
+
+    @Test
+    fun searchMovieList_is_status_ok() {
+        mockMvc.perform(get("/movies"))
+            .andExpect(status().isOk)
+    }
+
+    @Test
+    fun searchMovieList_return_value() {
+        val givenMovie = anMovie().build()
+        BDDMockito.given(mockMovieSearchUseCase.getMovieList()).willReturn(listOf(givenMovie))
+
+        mockMvc.perform(get("/movies"))
+            .andExpect(jsonPath("$.movies").isArray)
+            .andExpect(jsonPath("$.movies[0].movieId").value(givenMovie.id))
+            .andExpect(jsonPath("$.movies[0].title").value(givenMovie.title))
+            .andExpect(jsonPath("$.movies[0].description").value(givenMovie.description))
+            .andExpect(jsonPath("$.movies[0].bannerUrl").value(givenMovie.bannerUrl))
+            .andExpect(jsonPath("$.movies[0].genre").value(givenMovie.genre))
+            .andExpect(jsonPath("$.movies[0].duration").value(givenMovie.duration))
+    }
 }
