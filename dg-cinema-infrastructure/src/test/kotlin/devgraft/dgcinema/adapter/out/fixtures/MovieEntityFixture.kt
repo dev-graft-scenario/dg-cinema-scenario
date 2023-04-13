@@ -1,4 +1,6 @@
-package devgraft.dgcinema.adapter.out
+package devgraft.dgcinema.adapter.out.fixtures
+
+import devgraft.dgcinema.adapter.out.MovieEntity
 
 
 fun anMovieEntity() : MovieEntityBuilder {

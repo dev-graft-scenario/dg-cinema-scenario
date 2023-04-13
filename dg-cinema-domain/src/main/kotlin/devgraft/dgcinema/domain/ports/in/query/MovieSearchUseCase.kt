@@ -1,4 +1,4 @@
-package devgraft.dgcinema.domain.ports.`in`
+package devgraft.dgcinema.domain.ports.`in`.query
 
 import devgraft.dgcinema.domain.model.Movie
 

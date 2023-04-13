@@ -9,7 +9,7 @@ import java.util.stream.Collectors
 @Component
 internal class MovieAdapter(private val movieRepository: MovieRepository) : MoviePort {
     override fun findById(movieId: Long): Optional<Movie> {
-        return movieRepository.findById(movieId).map { movieEntity -> toMovie(movieEntity) }
+        return movieRepository.findById(movieId).map(::toMovie)
     }
 
     override fun findAll(): List<Movie> {
