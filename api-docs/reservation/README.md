@@ -106,7 +106,7 @@ GET /api/showings/charts?page={page}?size={size}?sort={sort}
 | showings[i].genre            | String | 영화 장르         |
 | showings[i].showingStartDate | Date   | 상영 시작일        |
 | showings[i].showingEndDate   | Date   | 상영 종료일        |
-| showings[i].rate             | Double | 영화          |
+| showings[i].rate             | Double | 예매율          |
 
 ## 상영관 목록 조회
 
