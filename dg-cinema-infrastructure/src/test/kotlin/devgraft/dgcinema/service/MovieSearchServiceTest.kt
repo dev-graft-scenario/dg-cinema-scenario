@@ -65,4 +65,17 @@ class MovieSearchServiceTest {
 
         Assertions.assertThat(result).isEqualTo(givenMovie)
     }
+
+    @Test
+    fun getMovieList_return_value() {
+        val givenMovieList = listOf(anMovie().build())
+        Mockito.lenient().`when`(mockMovePort.findAll()).thenReturn(givenMovieList)
+
+        val result = movieSearchService.getMovieList()
+
+        Assertions.assertThat(result).isNotEmpty
+        for ((index, movie) in result.withIndex()) {
+            Assertions.assertThat(movie).isEqualTo(givenMovieList.get(index))
+        }
+    }
 }

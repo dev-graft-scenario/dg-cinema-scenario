@@ -37,8 +37,7 @@ class MovieAdapterTest {
 
     @Test
     fun findAll_return_value() {
-        val givenMovieEntity = anMovieEntity().build()
-        val givenMovieEntityList = listOf(givenMovieEntity)
+        val givenMovieEntityList = listOf(anMovieEntity().build())
         Mockito.lenient().`when`(mockMovieRepository.findAll()).thenReturn(givenMovieEntityList)
 
         val result = movieAdapter.findAll()
