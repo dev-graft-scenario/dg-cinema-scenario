@@ -11,12 +11,12 @@ import java.util.stream.Collectors
 class MovieQueryApi(private val movieSearchUseCase: MovieSearchUseCase) {
 
     @GetMapping("movies")
-    fun searchMovieList(): MovieSearchListResponse {
+    private fun searchMovieList(): MovieSearchListResponse {
         return toResponse(movieSearchUseCase.getMovieList())
     }
 
     @GetMapping("movies/{movieId}")
-    fun searchMovie(@PathVariable(name = "movieId") movieId: Long): MovieSearchResponse {
+    private fun searchMovie(@PathVariable(name = "movieId") movieId: Long): MovieSearchResponse {
         return toResponse(movieSearchUseCase.getMovie(movieId))
     }
 }
@@ -39,8 +39,8 @@ private fun toResponse(movies: List<Movie>): MovieSearchListResponse {
             movies = movieList
     )
 }
-data class MovieSearchListResponse(val movies: List<MovieSearchResponse>)
-data class MovieSearchResponse(
+private data class MovieSearchListResponse(val movies: List<MovieSearchResponse>)
+private data class MovieSearchResponse(
         val movieId: Long,
         val title: String,
         val description: String,
