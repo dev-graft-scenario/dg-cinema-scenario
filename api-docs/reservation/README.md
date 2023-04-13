@@ -68,7 +68,7 @@ GET /api/movies/{movieId}
 ## 🔎 예매 차트 목록 조회
 
 ```http request
-GET /api/showings?page={page}?size={size}?sort={sort}
+GET /api/showings/charts?page={page}?size={size}?sort={sort}
 ```
 
 ### · request
