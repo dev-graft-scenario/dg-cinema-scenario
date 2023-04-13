@@ -9,7 +9,7 @@ import javax.persistence.Table
 
 @Table(name = "movie")
 @Entity
-internal class MovieEntity(
+class MovieEntity(
     @Column(name = "title", nullable = false)
     val title: String,
     @Column(name = "description", nullable = false)
