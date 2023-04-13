@@ -19,8 +19,6 @@ class MovieApi(private val movieSearchUseCase: MovieSearchUseCase) {
     fun searchMovie(@PathVariable(name = "movieId") movieId: Long): MovieSearchResponse {
         return toResponse(movieSearchUseCase.getMovie(movieId))
     }
-
-
 }
 
 private fun toResponse(movie: Movie): MovieSearchResponse {

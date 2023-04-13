@@ -5,6 +5,7 @@ apply {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation(project(":dg-cinema-domain"))
+    testImplementation(testFixtures(project(":dg-cinema-domain")))
 }
 
 allOpen {

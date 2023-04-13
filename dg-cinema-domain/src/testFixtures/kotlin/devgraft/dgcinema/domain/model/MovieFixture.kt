@@ -10,7 +10,7 @@ fun anMovie(): MovieBuilder {
             .duration(100)
 }
 
-class MovieBuilder {
+open class MovieBuilder {
     private var id: Long = 0
     private lateinit var title: String
     private lateinit var description: String
