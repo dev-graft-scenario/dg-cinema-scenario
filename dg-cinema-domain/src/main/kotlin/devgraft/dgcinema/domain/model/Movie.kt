@@ -1,4 +1,4 @@
-package devgraft.dgcinema
+package devgraft.dgcinema.domain.model
 
 class Movie(
     val id: Long,

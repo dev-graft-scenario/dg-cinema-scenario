@@ -133,7 +133,6 @@ cmake-build-*/
 *.iws
 
 # IntelliJ
-out/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -911,7 +910,6 @@ web_modules/
 
 # Next.js build output
 .next
-out
 
 # Nuxt.js build / generate output
 .nuxt
@@ -1131,7 +1129,6 @@ proguard/
 # Android Studio
 /*/build/
 /*/local.properties
-/*/out
 /*/*/build
 /*/*/production
 .navigation/

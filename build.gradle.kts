@@ -7,9 +7,11 @@ plugins {
     kotlin("plugin.spring") version "1.7.20" apply false
     kotlin("plugin.jpa") version "1.7.20" apply false
     id("java-library")
+    id("java-test-fixtures")
 }
 
 subprojects {
+    apply(plugin = "java-test-fixtures")
     apply(plugin = "java-library")
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
@@ -37,6 +39,7 @@ subprojects {
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
         testImplementation("org.springframework.boot:spring-boot-starter-test")
+        testFixturesImplementation("org.springframework.boot:spring-boot-starter-test")
     }
 
     tasks {
