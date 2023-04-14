@@ -1,4 +1,4 @@
-= Movie APIs
+= Movie API
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
@@ -12,21 +12,7 @@
 :operation-http-response-title: 결과 예시
 :operation-response-fields-title: 결과 필드
 
+[[Movie-API]]
 == 영화 조회
-// include::{docdir}/curl-request.adoc[]
-// include::{docdir}/path-parameters.adoc[]
-
-operation::movie-query-api-test/search-movie_return_value[snippets='curl-request', 'path-parameters']
-
-
-== 프로필 조회
-operation::member-query-api-doc/get-member-profile[snippets='curl-request,request-parameters']
-operation::member-query-api-doc/get-member-profile[snippets='http-response,response-fields']
-
-== 이름 목록 검색
-operation::member-query-api-doc/search-nickname[snippets='curl-request,request-parameters']
-operation::member-query-api-doc/search-nickname[snippets='http-response,response-fields']
-
-== 아이디 목록 검색
-operation::member-query-api-doc/search-login-id[snippets='curl-request,request-parameters']
-operation::member-query-api-doc/search-login-id[snippets='http-response,response-fields']
+operation::movie-query-api-test/search-movie_return_value[snippets='curl-request,path-parameters']
+operation::movie-query-api-test/search-movie_return_value[snippets='response-body,response-fields']

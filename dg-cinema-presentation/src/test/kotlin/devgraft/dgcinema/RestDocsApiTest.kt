@@ -19,25 +19,23 @@ import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder
 abstract class RestDocsApiTest {
     protected lateinit var mockMvc: MockMvc
     abstract fun api(): Array<Any>
-
-    private val handler: RestDocumentationResultHandler = MockMvcRestDocumentation.document(
-        "{class-name}/{method-name}",
-        Preprocessors.preprocessRequest(prettyPrint()),
-        Preprocessors.preprocessResponse(prettyPrint()),
-    )
-
-    protected fun document(vararg snippet: Snippet) : RestDocumentationResultHandler{
-        return handler.document(*snippet)
+    protected fun document(vararg snippet: Snippet): RestDocumentationResultHandler {
+        return MockMvcRestDocumentation.document(
+                "{class-name}/{method-name}",
+                Preprocessors.preprocessRequest(prettyPrint()),
+                Preprocessors.preprocessResponse(prettyPrint()),
+                *snippet)
     }
+
     @BeforeEach
     open fun setUp(provider: RestDocumentationContextProvider) {
         mockMvc = MockMvcBuilders.standaloneSetup(*api())
-            .apply<StandaloneMockMvcBuilder>(
-                documentationConfiguration(provider)
-                    .operationPreprocessors()
-                    .withRequestDefaults(prettyPrint())
-                    .withResponseDefaults(prettyPrint())
-            )
-            .build()
+                .apply<StandaloneMockMvcBuilder>(
+                        documentationConfiguration(provider)
+                                .operationPreprocessors()
+                                .withRequestDefaults(prettyPrint())
+                                .withResponseDefaults(prettyPrint())
+                )
+                .build()
     }
 }
