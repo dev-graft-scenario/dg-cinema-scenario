@@ -1,0 +1,12 @@
+[source,options="nowrap"]
+----
+{
+  "movieId" : 1,
+  "title" : "givenTitle",
+  "description" : "givenDescription",
+  "bannerUrl" : "bannerUrl",
+  "genre" : "genre",
+  "releaseDate" : "2023-04-14",
+  "duration" : 100
+}
+----

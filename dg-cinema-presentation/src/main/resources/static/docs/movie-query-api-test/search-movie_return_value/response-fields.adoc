@@ -1,0 +1,32 @@
+|===
+|Path|Type|Description
+
+|`+movieId+`
+|`+Number+`
+|영화 아이디
+
+|`+title+`
+|`+String+`
+|영화 제목
+
+|`+description+`
+|`+String+`
+|영화 설명
+
+|`+bannerUrl+`
+|`+String+`
+|영화 배너 URL
+
+|`+genre+`
+|`+String+`
+|영화 장르
+
+|`+releaseDate+`
+|`+class java.time.LocalDate+`
+|영화 개봉일
+
+|`+duration+`
+|`+Number+`
+|영화 길이(1분)
+
+|===
