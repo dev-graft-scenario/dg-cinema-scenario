@@ -22,6 +22,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import java.time.format.DateTimeFormatter
 
 @ExtendWith(MockitoExtension::class)
 class MovieQueryApiTest {
@@ -55,6 +56,7 @@ class MovieQueryApiTest {
                 .andExpect(jsonPath("$.description").value(givenMovie.description))
                 .andExpect(jsonPath("$.bannerUrl").value(givenMovie.bannerUrl))
                 .andExpect(jsonPath("$.genre").value(givenMovie.genre))
+                .andExpect(jsonPath("$.releaseDate").value(givenMovie.releaseDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))))
                 .andExpect(jsonPath("$.duration").value(givenMovie.duration))
     }
 
@@ -84,6 +86,7 @@ class MovieQueryApiTest {
             .andExpect(jsonPath("$.movies[0].description").value(givenMovie.description))
             .andExpect(jsonPath("$.movies[0].bannerUrl").value(givenMovie.bannerUrl))
             .andExpect(jsonPath("$.movies[0].genre").value(givenMovie.genre))
+            .andExpect(jsonPath("$.movies[0].releaseDate").value(givenMovie.releaseDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))))
             .andExpect(jsonPath("$.movies[0].duration").value(givenMovie.duration))
     }
 }

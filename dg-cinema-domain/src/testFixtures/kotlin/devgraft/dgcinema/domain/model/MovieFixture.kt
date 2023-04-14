@@ -1,13 +1,16 @@
 package devgraft.dgcinema.domain.model
 
+import java.time.LocalDate
+
 fun anMovie(): MovieBuilder {
     return MovieBuilder()
-            .id(1)
-            .title("title")
-            .description("description")
-            .bannerUrl("bannerUrl")
-            .genre("genre")
-            .duration(100)
+        .id(1)
+        .title("title")
+        .description("description")
+        .bannerUrl("bannerUrl")
+        .releaseDate(LocalDate.now())
+        .genre("genre")
+        .duration(100)
 }
 
 class MovieBuilder {
@@ -16,6 +19,7 @@ class MovieBuilder {
     private lateinit var description: String
     private lateinit var bannerUrl: String
     private lateinit var genre: String
+    private lateinit var releaseDate: LocalDate
     private var duration: Int = 0
 
     fun id(id: Long) = apply { this.id = id }
@@ -23,8 +27,17 @@ class MovieBuilder {
     fun description(description: String) = apply { this.description = description }
     fun bannerUrl(bannerUrl: String) = apply { this.bannerUrl = bannerUrl }
     fun genre(genre: String) = apply { this.genre = genre }
+    fun releaseDate(releaseDate: LocalDate) = apply { this.releaseDate = releaseDate }
     fun duration(duration: Int) = apply { this.duration = duration }
     fun build(): Movie {
-        return Movie(id, title, description, bannerUrl, genre, duration)
+        return Movie(
+            id = id,
+            title = title,
+            description = description,
+            bannerUrl = bannerUrl,
+            genre = genre,
+            releaseDate = releaseDate,
+            duration = duration
+        )
     }
 }
