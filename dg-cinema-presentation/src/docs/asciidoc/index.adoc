@@ -1,0 +1,23 @@
+= DG Cinema REST Docs 가이드
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+:operation-curl-request-title: 요청 예시
+:operation-request-parameters-title: 요청 파라미터
+:operation-path-parameters-title: 경로 파라미터
+:operation-request-fields-title: 요청 필드
+:operation-http-response-title: 결과 예시
+:operation-response-fields-title: 결과 필드
+
+== 개요
+'DG Cinema 프로젝트' REST Docs 문서입니다.
+
+=== DNS
+=== 응답 형식
+
+== 예매(Movie)
+=== 1. 영화 조회
+=== 2. 영화 목록 조회
