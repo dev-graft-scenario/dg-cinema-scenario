@@ -1,8 +1,0 @@
-.+/movies/{movieId}+
-|===
-|Parameter|Description
-
-|`+movieId+`
-|영화 아이디
-
-|===

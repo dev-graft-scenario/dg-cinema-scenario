@@ -41,7 +41,7 @@ class MovieQueryApiTest : RestDocsApiTest() {
         BDDMockito.given(mockMovieSearchUseCase.getMovie(anyLong())).willReturn(anMovie().build())
 
         mockMvc.perform(get("/movies/{movieId}", 1))
-            .andExpect(status().isOk)
+                .andExpect(status().isOk)
     }
 
     @Test
@@ -51,29 +51,29 @@ class MovieQueryApiTest : RestDocsApiTest() {
 
         mockMvc.perform(get("/movies/{movieId}", 1))
                 .andExpect(status().isOk)
-            .andExpect(jsonPath("$.movieId").value(givenMovie.id))
-            .andExpect(jsonPath("$.title").value(givenMovie.title))
-            .andExpect(jsonPath("$.description").value(givenMovie.description))
-            .andExpect(jsonPath("$.bannerUrl").value(givenMovie.bannerUrl))
-            .andExpect(jsonPath("$.genre").value(givenMovie.genre))
-            .andExpect(jsonPath("$.releaseDate").value(givenMovie.releaseDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))))
-            .andExpect(jsonPath("$.duration").value(givenMovie.duration))
-            .andDo(
-                document(
-                    pathParameters(
-                        parameterWithName("movieId").description("영화 아이디")
-                    ),
-                    responseFields(
-                        fieldWithPath("movieId").type(JsonFieldType.NUMBER).description("영화 아이디"),
-                        fieldWithPath("title").type(JsonFieldType.STRING).description("영화 제목"),
-                        fieldWithPath("description").type(JsonFieldType.STRING).description("영화 설명"),
-                        fieldWithPath("bannerUrl").type(JsonFieldType.STRING).description("영화 배너 URL"),
-                        fieldWithPath("genre").type(JsonFieldType.STRING).description("영화 장르"),
-                        fieldWithPath("releaseDate").type(LocalDate::class).description("영화 개봉일"),
-                        fieldWithPath("duration").type(JsonFieldType.NUMBER).description("영화 길이(1분)")
-                    )
+                .andExpect(jsonPath("$.movieId").value(givenMovie.id))
+                .andExpect(jsonPath("$.title").value(givenMovie.title))
+                .andExpect(jsonPath("$.description").value(givenMovie.description))
+                .andExpect(jsonPath("$.bannerUrl").value(givenMovie.bannerUrl))
+                .andExpect(jsonPath("$.genre").value(givenMovie.genre))
+                .andExpect(jsonPath("$.releaseDate").value(givenMovie.releaseDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))))
+                .andExpect(jsonPath("$.duration").value(givenMovie.duration))
+                .andDo(
+                        document(
+                                pathParameters(
+                                        parameterWithName("movieId").description("영화 아이디")
+                                ),
+                                responseFields(
+                                        fieldWithPath("movieId").type(JsonFieldType.NUMBER).description("영화 아이디"),
+                                        fieldWithPath("title").type(JsonFieldType.STRING).description("영화 제목"),
+                                        fieldWithPath("description").type(JsonFieldType.STRING).description("영화 설명"),
+                                        fieldWithPath("bannerUrl").type(JsonFieldType.STRING).description("영화 배너 URL"),
+                                        fieldWithPath("genre").type(JsonFieldType.STRING).description("영화 장르"),
+                                        fieldWithPath("releaseDate").type(LocalDate::class).description("영화 개봉일"),
+                                        fieldWithPath("duration").type(JsonFieldType.NUMBER).description("영화 길이(1분)")
+                                )
+                        )
                 )
-            )
     }
 
     @Test
@@ -89,7 +89,7 @@ class MovieQueryApiTest : RestDocsApiTest() {
     @Test
     fun searchMovieList_status_is_ok() {
         mockMvc.perform(get("/movies"))
-            .andExpect(status().isOk)
+                .andExpect(status().isOk)
     }
 
     @Test
@@ -98,21 +98,27 @@ class MovieQueryApiTest : RestDocsApiTest() {
         BDDMockito.given(mockMovieSearchUseCase.getMovieList()).willReturn(listOf(givenMovie))
 
         mockMvc.perform(get("/movies"))
-            .andExpect(jsonPath("$.movies").isArray)
-            .andExpect(jsonPath("$.movies[0].movieId").value(givenMovie.id))
-            .andExpect(jsonPath("$.movies[0].title").value(givenMovie.title))
-            .andExpect(jsonPath("$.movies[0].description").value(givenMovie.description))
-            .andExpect(jsonPath("$.movies[0].bannerUrl").value(givenMovie.bannerUrl))
-            .andExpect(jsonPath("$.movies[0].genre").value(givenMovie.genre))
-            .andExpect(jsonPath("$.movies[0].duration").value(givenMovie.duration))
-            .andExpect(
-                jsonPath("$.movies[0].releaseDate").value(
-                    givenMovie.releaseDate.format(
-                        DateTimeFormatter.ofPattern(
-                            "yyyy-MM-dd"
+                .andExpect(jsonPath("$.movies").isArray)
+                .andExpect(jsonPath("$.movies[0].movieId").value(givenMovie.id))
+                .andExpect(jsonPath("$.movies[0].title").value(givenMovie.title))
+                .andExpect(jsonPath("$.movies[0].description").value(givenMovie.description))
+                .andExpect(jsonPath("$.movies[0].bannerUrl").value(givenMovie.bannerUrl))
+                .andExpect(jsonPath("$.movies[0].genre").value(givenMovie.genre))
+                .andExpect(jsonPath("$.movies[0].duration").value(givenMovie.duration))
+                .andExpect(jsonPath("$.movies[0].releaseDate").value(givenMovie.releaseDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))))
+                .andDo(
+                        document(
+                                responseFields(
+                                        fieldWithPath("movies").type(JsonFieldType.ARRAY).description("영화 목록"),
+                                        fieldWithPath("movies[].movieId").type(JsonFieldType.NUMBER).description("영화 아이디"),
+                                        fieldWithPath("movies[].title").type(JsonFieldType.STRING).description("영화 제목"),
+                                        fieldWithPath("movies[].description").type(JsonFieldType.STRING).description("영화 설명"),
+                                        fieldWithPath("movies[].bannerUrl").type(JsonFieldType.STRING).description("영화 배너 URL"),
+                                        fieldWithPath("movies[].genre").type(JsonFieldType.STRING).description("영화 장르"),
+                                        fieldWithPath("movies[].releaseDate").type(LocalDate::class).description("영화 개봉일"),
+                                        fieldWithPath("movies[].duration").type(JsonFieldType.NUMBER).description("영화 길이(1분)")
+                                )
                         )
-                    )
                 )
-            )
     }
 }
