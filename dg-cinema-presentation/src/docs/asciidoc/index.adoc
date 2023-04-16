@@ -5,12 +5,15 @@
 :toc: left
 :toclevels: 2
 :sectlinks:
-:operation-curl-request-title: 요청 예시
-:operation-request-parameters-title: 요청 파라미터
-:operation-path-parameters-title: 경로 파라미터
-:operation-request-fields-title: 요청 필드
-:operation-http-response-title: 결과 예시
-:operation-response-fields-title: 결과 필드
+// :stylesdir: .asciidoctor/{css_dir_name}
+// :stylesheet: style.css
+:operation-curl-request-title: request
+:operation-request-parameters-title: ######
+:operation-path-parameters-title: ######
+:operation-request-fields-title: ######
+:operation-http-response-title: ######
+:operation-response-body-title: response
+:operation-response-fields-title: ######
 
 == 개요
 'DG Cinema 프로젝트' REST Docs 문서입니다.
@@ -18,7 +21,7 @@
 === DNS
 === 응답 형식
 
-== 영화(Movie)
+== 영화 [Movie]
 === 영화 조회
 operation::movie-query-api-test/search-movie_return_value[snippets='curl-request,path-parameters']
 operation::movie-query-api-test/search-movie_return_value[snippets='response-body,response-fields']
