@@ -652,7 +652,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
+dg-cinema-presentation/docs/_build/
 
 # PyBuilder
 .pybuilder/

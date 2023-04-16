@@ -22,6 +22,7 @@
 === 영화 조회
 operation::movie-query-api-test/search-movie_return_value[snippets='curl-request,path-parameters']
 operation::movie-query-api-test/search-movie_return_value[snippets='response-body,response-fields']
+
 === 영화 목록 조회
 operation::movie-query-api-test/search-movie-list_return_value[snippets='curl-request']
 operation::movie-query-api-test/search-movie-list_return_value[snippets='response-body,response-fields']
