@@ -1,4 +1,4 @@
-package devgraft.dgcinema
+package devgraft.dgcinema.restdocs
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.extension.ExtendWith

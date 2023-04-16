@@ -1,9 +1,9 @@
 package devgraft.dgcinema.adapter.`in`.query
 
 import capture
-import devgraft.dgcinema.RestDocsApiTest
 import devgraft.dgcinema.domain.model.anMovie
 import devgraft.dgcinema.domain.ports.`in`.query.MovieSearchUseCase
+import devgraft.dgcinema.restdocs.RestDocsApiTest
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentCaptor

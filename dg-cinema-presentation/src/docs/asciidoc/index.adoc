@@ -7,12 +7,12 @@
 :sectlinks:
 // :stylesdir: .asciidoctor/{css_dir_name}
 // :stylesheet: style.css
-:operation-curl-request-title: request
+:operation-curl-request-title: ######
 :operation-request-parameters-title: ######
 :operation-path-parameters-title: ######
 :operation-request-fields-title: ######
 :operation-http-response-title: ######
-:operation-response-body-title: response
+:operation-response-body-title: ######
 :operation-response-fields-title: ######
 
 == 개요
@@ -23,7 +23,7 @@
 
 == 영화 [Movie]
 === 영화 조회
-operation::movie-query-api-test/search-movie_return_value[snippets='curl-request,path-parameters']
+operation::movie-query-api-test/search-movie_return_value[snippets='httpie-request,path-parameters']
 operation::movie-query-api-test/search-movie_return_value[snippets='response-body,response-fields']
 
 === 영화 목록 조회
