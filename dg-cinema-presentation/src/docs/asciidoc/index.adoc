@@ -38,5 +38,5 @@ operation::theater-query-api-test/search-theater-list_return_value[snippets='cur
 operation::theater-query-api-test/search-theater-list_return_value[snippets='response-body,response-fields']
 
 === 상영실 목록 조회
-operation::theater-query-api-test/search-auditorium-list_return_value[snippets='curl-request']
+operation::theater-query-api-test/search-auditorium-list_return_value[snippets='curl-request,path-parameters']
 operation::theater-query-api-test/search-auditorium-list_return_value[snippets='response-body,response-fields']

@@ -133,13 +133,16 @@ class TheaterQueryApiTest : RestDocsApiTest() {
         BDDMockito.given(mockAuditoriumSearchUseCase.getAuditoriumListByTheater(anyLong()))
                 .willReturn(listOf(givenAuditorium))
 
-        mockMvc.perform(get("/theaters/{theaterId}/auditoriums", givenAuditorium.theaterId))
+        mockMvc.perform(RestDocumentationRequestBuilders.get("/theaters/{theaterId}/auditoriums", givenAuditorium.theaterId))
                 .andExpect(jsonPath("$.auditoriums").isArray)
                 .andExpect(jsonPath("$.auditoriums[0].auditoriumId").value(givenAuditorium.id))
                 .andExpect(jsonPath("$.auditoriums[0].theaterId").value(givenAuditorium.theaterId))
                 .andExpect(jsonPath("$.auditoriums[0].auditoriumName").value(givenAuditorium.name))
                 .andDo(
                         document(
+                                RequestDocumentation.pathParameters(
+                                        RequestDocumentation.parameterWithName("theaterId").description("상영관 아이디")
+                                ),
                                 responseFields(
                                         fieldWithPath("auditoriums").type(JsonFieldType.ARRAY).description("상영실 목록"),
                                         fieldWithPath("auditoriums[].auditoriumId").type(JsonFieldType.NUMBER).description("상영실 아이디"),
