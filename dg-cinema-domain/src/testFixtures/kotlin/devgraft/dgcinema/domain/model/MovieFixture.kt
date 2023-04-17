@@ -5,11 +5,11 @@ import java.time.LocalDate
 fun anMovie(): MovieBuilder {
     return MovieBuilder()
         .id(1)
-        .title("title")
-        .description("description")
+        .title("스즈메의 문단속")
+        .description("문단속의 필요성을 강조하는 영화")
         .bannerUrl("bannerUrl")
         .releaseDate(LocalDate.now())
-        .genre("genre")
+        .genre("판타지")
         .duration(100)
 }
 

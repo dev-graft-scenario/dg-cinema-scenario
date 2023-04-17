@@ -19,7 +19,8 @@
 == 개요
 'DG Cinema 프로젝트' REST Docs 문서입니다.
 
-== 예
+== 예매
+
 === 영화 조회
 operation::movie-query-api-test/search-movie_return_value[snippets='curl-request,path-parameters']
 operation::movie-query-api-test/search-movie_return_value[snippets='response-body,response-fields']
