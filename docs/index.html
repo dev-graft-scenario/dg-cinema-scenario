@@ -447,10 +447,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_개요">개요</a></li>
-<li><a href="#_영화_movie">영화 [Movie]</a>
+<li><a href="#_예매">예매</a>
 <ul class="sectlevel2">
 <li><a href="#_영화_조회">영화 조회</a></li>
 <li><a href="#_영화_목록_조회">영화 목록 조회</a></li>
+<li><a href="#_상영관_조회">상영관 조회</a></li>
+<li><a href="#_상영관_목록_조회">상영관 목록 조회</a></li>
 </ul>
 </li>
 </ul>
@@ -466,7 +468,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_영화_movie"><a class="link" href="#_영화_movie">영화 [Movie]</a></h2>
+<h2 id="_예매"><a class="link" href="#_예매">예매</a></h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_영화_조회"><a class="link" href="#_영화_조회">영화 조회</a></h3>
@@ -522,7 +524,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
   "title" : "givenTitle",
   "description" : "givenDescription",
   "bannerUrl" : "bannerUrl",
-  "genre" : "genre",
+  "genre" : "판타지",
   "releaseDate" : "2023-04-17",
   "duration" : 100
 }</code></pre>
@@ -619,10 +621,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
   "movies" : [ {
     "movieId" : 1,
-    "title" : "title",
-    "description" : "description",
+    "title" : "스즈메의 문단속",
+    "description" : "문단속의 필요성을 강조하는 영화",
     "bannerUrl" : "bannerUrl",
-    "genre" : "genre",
+    "genre" : "판타지",
     "releaseDate" : "2023-04-17",
     "duration" : 100
   } ]
@@ -704,13 +706,179 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_상영관_조회"><a class="link" href="#_상영관_조회">상영관 조회</a></h3>
+<div class="sect3">
+<h4 id="_상영관_조회_curl_request"><a class="link" href="#_상영관_조회_curl_request"><mark><mark></mark></mark></a></h4>
+<div class="sect4">
+<h5 id="_request_sample"><a class="link" href="#_request_sample">Request Sample</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/theaters/10' -i -X GET</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_상영관_조회_path_parameters"><a class="link" href="#_상영관_조회_path_parameters"><mark><mark></mark></mark></a></h4>
+<div class="sect4">
+<h5 id="_path_parameters"><a class="link" href="#_path_parameters">Path Parameters</a></h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">파라미터명</th>
+<th class="tableblock halign-left valign-top">필수값</th>
+<th class="tableblock halign-left valign-top">양식</th>
+<th class="tableblock halign-left valign-top">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>theaterId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">상영관 아이디</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_상영관_조회_response_body"><a class="link" href="#_상영관_조회_response_body"><mark><mark></mark></mark></a></h4>
+<div class="sect4">
+<h5 id="_response_body"><a class="link" href="#_response_body">Response Body</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
+  "theaterId" : 10,
+  "theaterName" : "TEST"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_상영관_조회_response_fields"><a class="link" href="#_상영관_조회_response_fields"><mark><mark></mark></mark></a></h4>
+<div class="sect4">
+<h5 id="_response_fields"><a class="link" href="#_response_fields">Response Fields</a></h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">필드명</th>
+<th class="tableblock halign-left valign-top">타입</th>
+<th class="tableblock halign-left valign-top">양식</th>
+<th class="tableblock halign-left valign-top">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>theaterId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">상영관 아이디</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>theaterName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">상영관 이름</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_상영관_목록_조회"><a class="link" href="#_상영관_목록_조회">상영관 목록 조회</a></h3>
+<div class="sect3">
+<h4 id="_상영관_목록_조회_curl_request"><a class="link" href="#_상영관_목록_조회_curl_request"><mark><mark></mark></mark></a></h4>
+<div class="sect4">
+<h5 id="_request_sample"><a class="link" href="#_request_sample">Request Sample</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">$ curl 'http://localhost:8080/theaters' -i -X GET</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_상영관_목록_조회_response_body"><a class="link" href="#_상영관_목록_조회_response_body"><mark><mark></mark></mark></a></h4>
+<div class="sect4">
+<h5 id="_response_body"><a class="link" href="#_response_body">Response Body</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-none hljs">{
+  "theaters" : [ {
+    "theaterId" : 100,
+    "theaterName" : "QWERTY"
+  } ]
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_상영관_목록_조회_response_fields"><a class="link" href="#_상영관_목록_조회_response_fields"><mark><mark></mark></mark></a></h4>
+<div class="sect4">
+<h5 id="_response_fields"><a class="link" href="#_response_fields">Response Fields</a></h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">필드명</th>
+<th class="tableblock halign-left valign-top">타입</th>
+<th class="tableblock halign-left valign-top">양식</th>
+<th class="tableblock halign-left valign-top">설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>theaters</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">상영관 목록</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>theaters[].theaterId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">상영관 아이디</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>theaters[].theaterName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">상영관 이름</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2023-04-17 09:12:29 +0900
+Last updated 2023-04-17 19:45:20 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
