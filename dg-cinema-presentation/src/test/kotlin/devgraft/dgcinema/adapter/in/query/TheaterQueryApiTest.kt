@@ -22,6 +22,7 @@ import org.springframework.restdocs.payload.JsonFieldType
 import org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath
 import org.springframework.restdocs.payload.PayloadDocumentation.responseFields
 import org.springframework.restdocs.request.RequestDocumentation
+import org.springframework.restdocs.request.RequestDocumentation.pathParameters
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
@@ -60,7 +61,7 @@ class TheaterQueryApiTest : RestDocsApiTest() {
             .andExpect(jsonPath("$.theaterName").value(givenTheater.name))
             .andDo(
                 document(
-                    RequestDocumentation.pathParameters(
+                    pathParameters(
                         RequestDocumentation.parameterWithName("theaterId").description("상영관 아이디")
                     ),
                     responseFields(
@@ -140,7 +141,7 @@ class TheaterQueryApiTest : RestDocsApiTest() {
                 .andExpect(jsonPath("$.auditoriums[0].auditoriumName").value(givenAuditorium.name))
                 .andDo(
                         document(
-                                RequestDocumentation.pathParameters(
+                                pathParameters(
                                         RequestDocumentation.parameterWithName("theaterId").description("상영관 아이디")
                                 ),
                                 responseFields(
