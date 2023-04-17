@@ -2,7 +2,7 @@ package devgraft.dgcinema.domain.model
 
 fun anAuditorium(): AuditoriumBuilder {
     return AuditoriumBuilder()
-        .id(1L)
+        .id(3L)
         .theaterId(1L)
         .name("1관-1층")
 }

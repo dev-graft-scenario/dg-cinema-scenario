@@ -1,10 +1,13 @@
 package devgraft.dgcinema.adapter.`in`.query
 
 import capture
+import devgraft.dgcinema.domain.model.anAuditorium
 import devgraft.dgcinema.domain.model.anTheater
+import devgraft.dgcinema.domain.ports.`in`.query.AuditoriumSearchUseCase
 import devgraft.dgcinema.domain.ports.`in`.query.TheaterSearchUseCase
 import devgraft.dgcinema.restdocs.RestDocsApiTest
 import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.mockito.ArgumentCaptor
 import org.mockito.ArgumentMatchers.anyLong
@@ -12,8 +15,8 @@ import org.mockito.BDDMockito
 import org.mockito.Captor
 import org.mockito.InjectMocks
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders
 import org.springframework.restdocs.payload.JsonFieldType
 import org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath
@@ -29,6 +32,9 @@ class TheaterQueryApiTest : RestDocsApiTest() {
 
     @Mock
     private lateinit var mockTheaterSearchUseCase: TheaterSearchUseCase
+
+    @Mock
+    private lateinit var mockAuditoriumSearchUseCase: AuditoriumSearchUseCase
 
     @Captor
     private lateinit var theaterIdCaptor: ArgumentCaptor<Long>
@@ -73,7 +79,7 @@ class TheaterQueryApiTest : RestDocsApiTest() {
 
         mockMvc.perform(get("/theaters/{theaterId}", givenTheaterId))
 
-        Mockito.verify(mockTheaterSearchUseCase, times(1)).getTheater(capture(theaterIdCaptor))
+        verify(mockTheaterSearchUseCase, times(1)).getTheater(capture(theaterIdCaptor))
         Assertions.assertThat(theaterIdCaptor.value).isEqualTo(givenTheaterId)
     }
 
@@ -112,6 +118,45 @@ class TheaterQueryApiTest : RestDocsApiTest() {
 
         mockMvc.perform(get("/theaters"))
 
-        Mockito.verify(mockTheaterSearchUseCase, times(1)).getTheaterList()
+        verify(mockTheaterSearchUseCase, times(1)).getTheaterList()
+    }
+
+    @Test
+    fun searchAuditoriumList_status_is_ok() {
+        mockMvc.perform(get("/theaters/{theaterId}/auditoriums", 1))
+                .andExpect(status().isOk)
+    }
+
+    @Test
+    fun searchAuditoriumList_return_value() {
+        val givenAuditorium = anAuditorium().build()
+        BDDMockito.given(mockAuditoriumSearchUseCase.getAuditoriumListByTheater(anyLong()))
+                .willReturn(listOf(givenAuditorium))
+
+        mockMvc.perform(get("/theaters/{theaterId}/auditoriums", givenAuditorium.theaterId))
+                .andExpect(jsonPath("$.auditoriums").isArray)
+                .andExpect(jsonPath("$.auditoriums[0].auditoriumId").value(givenAuditorium.id))
+                .andExpect(jsonPath("$.auditoriums[0].theaterId").value(givenAuditorium.theaterId))
+                .andExpect(jsonPath("$.auditoriums[0].auditoriumName").value(givenAuditorium.name))
+                .andDo(
+                        document(
+                                responseFields(
+                                        fieldWithPath("auditoriums").type(JsonFieldType.ARRAY).description("상영실 목록"),
+                                        fieldWithPath("auditoriums[].auditoriumId").type(JsonFieldType.NUMBER).description("상영실 아이디"),
+                                        fieldWithPath("auditoriums[].theaterId").type(JsonFieldType.NUMBER).description("상영관 아이디"),
+                                        fieldWithPath("auditoriums[].auditoriumName").type(JsonFieldType.STRING).description("상영실 이름"),
+                                )
+                        )
+                )
+    }
+
+    @Test
+    fun searchAuditoriumList_passes_theaterId_to_useCase() {
+        val givenTheaterId = 1L
+
+        mockMvc.perform(get("/theaters/{theaterId}/auditoriums", givenTheaterId))
+
+        verify(mockAuditoriumSearchUseCase, times(1)).getAuditoriumListByTheater(capture(theaterIdCaptor))
+        assertThat(theaterIdCaptor.value).isEqualTo(givenTheaterId)
     }
 }
