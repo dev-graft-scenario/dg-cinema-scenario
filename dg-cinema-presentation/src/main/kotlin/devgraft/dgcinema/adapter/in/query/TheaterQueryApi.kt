@@ -22,8 +22,8 @@ class TheaterQueryApi(private val theaterSearchUseCase: TheaterSearchUseCase) {
 
 private fun toResponse(theater: Theater): TheaterSearchResponse {
     return TheaterSearchResponse(
-        id = theater.id,
-        name = theater.name
+        theaterId = theater.id,
+        theaterName = theater.name
     )
 }
 
@@ -33,5 +33,5 @@ private fun toResponse(theaters: List<Theater>): TheaterSearchListResponse {
     )
 }
 
-private data class TheaterSearchResponse(val id: Long, val name: String)
+private data class TheaterSearchResponse(val theaterId: Long, val theaterName: String)
 private data class TheaterSearchListResponse(val theaters: List<TheaterSearchResponse>)
