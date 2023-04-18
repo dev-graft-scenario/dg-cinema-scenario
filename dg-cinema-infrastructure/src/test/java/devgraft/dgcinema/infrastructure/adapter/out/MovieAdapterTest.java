@@ -67,6 +67,7 @@ class MovieAdapterTest {
 
         List<Movie> result = movieAdapter.findAll();
 
+        Assertions.assertThat(result).isNotEmpty();
         for (int i = 0; i < result.size(); i++) {
             final Movie movie = result.get(i);
             final MovieEntity givenMovieEntity = givenMovieEntityList.get(i);
