@@ -1,17 +1,18 @@
 CREATE TABLE IF NOT EXISTS member
 (
-    id       INT AUTO_INCREMENT PRIMARY KEY,
-    email    VARCHAR(255) NOT NULL,
+    id       BIGINT AUTO_INCREMENT PRIMARY KEY,
+    email    VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    phone    VARCHAR(255) NOT NULL,
+    phone    VARCHAR(255) NOT NULL UNIQUE,
     PRIMARY KEY (id)
 );
 
 CREATE INDEX idx_member_email ON member (email);
+CREATE INDEX idx_member_phone ON member (phone);
 
 CREATE TABLE IF NOT EXISTS movie
 (
-    id          INT AUTO_INCREMENT PRIMARY KEY,
+    id          BIGINT AUTO_INCREMENT PRIMARY KEY,
     title       VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
     bannerUrl   VARCHAR(255) NOT NULL,
@@ -22,7 +23,7 @@ CREATE TABLE IF NOT EXISTS movie
 
 CREATE TABLE IF NOT EXISTS theater
 (
-    id   INT AUTO_INCREMENT PRIMARY KEY,
+    id   BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
@@ -76,8 +77,8 @@ CREATE INDEX idx_reservation_seat ON reservation (seatId);
 
 CREATE TABLE IF NOT EXISTS payment
 (
-    id              INT AUTO_INCREMENT PRIMARY KEY,
-    reservationId   INT            NOT NULL,
+    id              BIGINT AUTO_INCREMENT PRIMARY KEY,
+    reservationId   BIGINT         NOT NULL,
     status          VARCHAR(255)   NOT NULL,
     amount          decimal(10, 2) NOT NULL,
     paymentMethod   VARCHAR(255)   NOT NULL,

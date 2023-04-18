@@ -5,7 +5,6 @@ plugins {
 val asciidoctorExt: Configuration by configurations.creating
 
 dependencies {
-
     implementation(project(":dg-cinema-domain"))
     testImplementation(testFixtures(project(":dg-cinema-domain")))
     implementation(project(":dg-cinema-infrastructure"))

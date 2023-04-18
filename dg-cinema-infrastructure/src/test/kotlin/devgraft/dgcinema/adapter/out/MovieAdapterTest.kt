@@ -2,6 +2,7 @@ package devgraft.dgcinema.adapter.out
 
 import devgraft.dgcinema.adapter.out.fixtures.anMovieEntity
 import devgraft.dgcinema.adapter.out.fixtures.assertThatMovie
+
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

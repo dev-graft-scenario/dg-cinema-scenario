@@ -41,7 +41,6 @@ class MovieEntityBuilder {
     fun bannerUrl(bannerUrl: String) = apply { this.bannerUrl = bannerUrl }
     fun genre(genre: String) = apply { this.genre = genre }
     fun releaseDate(releaseDate: LocalDate) = apply { this.releaseDate = releaseDate }
-
     fun duration(duration: Int) = apply { this.duration = duration }
     fun build(): MovieEntity {
         return MovieEntity(
