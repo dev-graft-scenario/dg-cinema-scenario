@@ -25,6 +25,7 @@ internal class MovieAdapter(private val movieRepository: MovieRepository) : Movi
                 description = movieEntity.description,
                 bannerUrl = movieEntity.bannerUrl,
                 genre = movieEntity.genre,
+                releaseDate = movieEntity.releaseDate,
                 duration = movieEntity.duration
         )
     }

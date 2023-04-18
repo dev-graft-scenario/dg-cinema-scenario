@@ -1,6 +1,8 @@
 package devgraft.dgcinema.adapter.out
 
 import devgraft.dgcinema.adapter.out.fixtures.anMovieEntity
+import devgraft.dgcinema.adapter.out.fixtures.assertThatMovie
+
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -38,12 +40,7 @@ class MovieAdapterTest {
 
         Assertions.assertThat(resultOpt.isEmpty).isFalse()
         val result = resultOpt.get()
-        Assertions.assertThat(result.id).isEqualTo(givenMovieEntity.id)
-        Assertions.assertThat(result.title).isEqualTo(givenMovieEntity.title)
-        Assertions.assertThat(result.description).isEqualTo(givenMovieEntity.description)
-        Assertions.assertThat(result.bannerUrl).isEqualTo(givenMovieEntity.bannerUrl)
-        Assertions.assertThat(result.genre).isEqualTo(givenMovieEntity.genre)
-        Assertions.assertThat(result.duration).isEqualTo(givenMovieEntity.duration)
+        assertThatMovie(result, givenMovieEntity)
     }
 
     @Test
@@ -55,12 +52,7 @@ class MovieAdapterTest {
 
         Assertions.assertThat(result).isNotEmpty
         for ((index, movie) in result.withIndex()) {
-            Assertions.assertThat(movie.id).isEqualTo(givenMovieEntityList[index].id)
-            Assertions.assertThat(movie.title).isEqualTo(givenMovieEntityList[index].title)
-            Assertions.assertThat(movie.description).isEqualTo(givenMovieEntityList[index].description)
-            Assertions.assertThat(movie.bannerUrl).isEqualTo(givenMovieEntityList[index].bannerUrl)
-            Assertions.assertThat(movie.genre).isEqualTo(givenMovieEntityList[index].genre)
-            Assertions.assertThat(movie.duration).isEqualTo(givenMovieEntityList[index].duration)
+            assertThatMovie(movie, givenMovieEntityList[index])
         }
     }
 }
