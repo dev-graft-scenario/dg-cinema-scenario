@@ -1,7 +1,6 @@
 package devgraft.dgcinema.domain.model;
 
 import java.time.LocalDate;
-
 public record Movie(
         Long id,
         String title,
