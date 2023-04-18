@@ -40,3 +40,7 @@ operation::theater-query-api-test/search-theater-list_return_value[snippets='res
 === 상영실 목록 조회
 operation::theater-query-api-test/search-auditorium-list_return_value[snippets='curl-request,path-parameters']
 operation::theater-query-api-test/search-auditorium-list_return_value[snippets='response-body,response-fields']
+
+=== 상영 목록 조회
+operation::showing-query-api-test/search-showing-list_return_value[snippets='curl-request,path-parameters,request-parameters']
+operation::showing-query-api-test/search-showing-list_return_value[snippets='response-body,response-fields']
