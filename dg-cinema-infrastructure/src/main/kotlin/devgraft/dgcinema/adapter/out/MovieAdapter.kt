@@ -4,7 +4,6 @@ import devgraft.dgcinema.domain.model.Movie
 import devgraft.dgcinema.domain.ports.out.MoviePort
 import org.springframework.stereotype.Component
 import java.util.Optional
-import java.util.stream.Collectors
 
 @Component
 internal class MovieAdapter(private val movieRepository: MovieRepository) : MoviePort {
@@ -15,7 +14,7 @@ internal class MovieAdapter(private val movieRepository: MovieRepository) : Movi
     override fun findAll(): List<Movie> {
         return movieRepository.findAll().stream()
                 .map(::toMovie)
-                .collect(Collectors.toUnmodifiableList())
+                .toList()
     }
 
     private fun toMovie(movieEntity: MovieEntity): Movie {

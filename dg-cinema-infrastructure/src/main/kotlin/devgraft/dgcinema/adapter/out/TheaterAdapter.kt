@@ -4,7 +4,6 @@ import devgraft.dgcinema.domain.model.Theater
 import devgraft.dgcinema.domain.ports.out.TheaterPort
 import org.springframework.stereotype.Component
 import java.util.Optional
-import java.util.stream.Collectors
 
 @Component
 internal class TheaterAdapter(
@@ -17,7 +16,7 @@ internal class TheaterAdapter(
     override fun findAll(): List<Theater> {
         return theaterRepository.findAll().stream()
             .map(::toTheater)
-            .collect(Collectors.toUnmodifiableList())
+            .toList()
     }
 
     private fun toTheater(theaterEntity:TheaterEntity) : Theater {

@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDate
-import java.util.stream.Collectors
 
 @RestController
 class MovieQueryApi(private val movieSearchUseCase: MovieSearchUseCase) {
@@ -37,7 +36,7 @@ private fun toResponse(movie: Movie): MovieSearchResponse {
 private fun toResponse(movies: List<Movie>): MovieSearchListResponse {
     val movieList = movies.stream()
             .map(::toResponse)
-            .collect(Collectors.toUnmodifiableList())
+            .toList()
     return MovieSearchListResponse(
             movies = movieList
     )
