@@ -19,28 +19,49 @@
 == 개요
 'DG Cinema 프로젝트' REST Docs 문서입니다.
 
-== 예매
+=== 핵심 정보
 
-=== 영화 조회
-operation::movie-query-api-test/search-movie_return_value[snippets='curl-request,path-parameters']
-operation::movie-query-api-test/search-movie_return_value[snippets='response-body,response-fields']
+==== 키워드
+```text
+극장: 영화관과 동일 의미.
+상영관: 영화관람이 가능한 스크린이 있는 시설.
+상영작: 현재 상영 중인 영화
 
-=== 영화 목록 조회
-operation::movie-query-api-test/search-movie-list_return_value[snippets='curl-request']
-operation::movie-query-api-test/search-movie-list_return_value[snippets='response-body,response-fields']
+```
 
-=== 상영관 조회
-operation::theater-query-api-test/search-theater_return_value[snippets='curl-request,path-parameters']
-operation::theater-query-api-test/search-theater_return_value[snippets='response-body,response-fields']
+=== 예매 관련 요구사항
+```
+상영 직전까지(1분 전) 예매가 가능해야합니다.
+좌석 선택을 완료 후 예매를 요청하면, 결제가 취소되기 전 까지 좌석을 예매할 수 없어야합니다.
+결제는 최대 10분 까지 유지되며, 10분이 지날 때 까지 결제가 완료되지 않으면 취소처리 됩니다.
+```
 
-=== 상영관 목록 조회
-operation::theater-query-api-test/search-theater-list_return_value[snippets='curl-request']
-operation::theater-query-api-test/search-theater-list_return_value[snippets='response-body,response-fields']
+==== 실시간 예매율 산출 방법
+```
+조회 시간을 기준으로 상영된지 2시간 이상 지난 예매 정보를 실시간으로 집계합니다.
+예매율 산출 기준 = A(예매 관객 수) / B(상영 및 개봉 예전체 예매 관객 수) * 100
+- 예매 관객 수(A): 조회 시점에 특정 영화의 예매가 2시간 이상 지난
+```
 
-=== 상영실 목록 조회
-operation::theater-query-api-test/search-auditorium-list_return_value[snippets='curl-request,path-parameters']
-operation::theater-query-api-test/search-auditorium-list_return_value[snippets='response-body,response-fields']
+== 회원
 
-=== 상영 목록 조회
-operation::showing-query-api-test/search-showing-list_return_value[snippets='curl-request,path-parameters,request-parameters']
-operation::showing-query-api-test/search-showing-list_return_value[snippets='response-body,response-fields']
+=== 회원가입
+
+=== 로그인
+
+== Ticket
+
+=== 무비 차트 조회 (movies)
+```
+현재 상영 중이거나 개봉 예정인 영화 목록을 조회합니다.
+```
+
+=== 영화별 상영 목록 조회
+```
+영화의 상영 목록을 조회합니다.
+```
+
+=== 극장별 상영 목록 조회
+```
+극장의 상영 목록을 조회합니다.
+```
