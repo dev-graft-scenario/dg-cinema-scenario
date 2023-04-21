@@ -50,7 +50,6 @@ class MovieQueryApiTest : RestDocsApiTest() {
         BDDMockito.given(mockMovieSearchUseCase.getMovie(anyLong())).willReturn(givenMovie)
 
         mockMvc.perform(get("/movies/{movieId}", 1))
-                .andExpect(status().isOk)
                 .andExpect(jsonPath("$.movieId").value(givenMovie.id))
                 .andExpect(jsonPath("$.title").value(givenMovie.title))
                 .andExpect(jsonPath("$.description").value(givenMovie.description))

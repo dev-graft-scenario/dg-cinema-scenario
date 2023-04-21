@@ -38,7 +38,9 @@ private fun toResponse(theater: Theater): TheaterSearchResponse {
 
 private fun toResponse(theaters: List<Theater>): TheaterSearchListResponse {
     return TheaterSearchListResponse(
-            theaters = theaters.stream().map(::toResponse).collect(Collectors.toUnmodifiableList())
+            theaters = theaters.stream()
+                .map(::toResponse)
+                .toList()
     )
 }
 
