@@ -407,4 +407,3 @@ GET /showings/reservations/rates/{movieId}
 | rank   | Number   | 예매율 순위      |
 | rate   | Number   | 예매율      |
 | reservationTotalCount   | Number   | 해당 영화 총 예매 횟수      |
-
