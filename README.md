@@ -3,7 +3,7 @@
 DEV-GRAFT가 영화관 운영을 시작했습니다!  
 그리고 우리 DG-MOVIE.Team은 영화관 서비스에 필요한 영화 예매 플랫폼을 개발해야합니다!
 
-- [Event Storming](https://miro.com/app/embed/uXjVOx1AX14=/?pres=1&frameId=3458764553417216368&embedId=924318195368)
+- [Event Storming](https://miro.com/app/embed/uXjVOx1AX14=/?pres=1&frameId=3458764553420482599&embedId=695691095149)
 - [API 문서]()
 
 ## 🎭 시나리오
