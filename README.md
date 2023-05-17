@@ -15,8 +15,7 @@ DEV-GRAFT가 영화관 운영을 시작했습니다!
 
 ### Flow
 
-![image](https://github.com/dev-graft-scenario/dg-cinema-scenario/assets/22608825/fd6e9b44-0ae8-4ac3-81ca-0559b987c0d7)
-
+![image](https://github.com/dev-graft-scenario/dg-cinema-scenario/assets/22608825/31cd6652-2a56-4049-b7be-5bfa6ac36bbf)
 
 Flow Image 추가 예정
 
