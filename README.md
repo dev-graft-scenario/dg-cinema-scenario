@@ -11,6 +11,18 @@ DDD를 기반으로 설계할 수 있도록 EventStorming만 제공할 예정입
 상세한 메커니즘은 시나리오 내에서 제공하지 않을 예정이며, 메커니즘 문서를 별도로 분리하여 제공할 예정입니다.
 
 ## Strategic Design
+> 복잡한 도메인들의 역할과 관계를 정의하는 과정
+
+
+### Event Storming
+> 요구사항에 맞는 Command와 Event를 출현시키고 비슷한 관계가 있는 내용을 묶어 BoundedContext를 식별하는 과정
+
+### Boris
+> 각 BoundedContext간의 협력 관계를 식별하는 과정
+
+### Snap-E
+> 
+
 
 ## Tactical Design
 
