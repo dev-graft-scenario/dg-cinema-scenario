@@ -1,0 +1,27 @@
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+spring:
+  profiles:
+    active: local
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:h2:mem:test-db;MODE=mysql;
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  sql:
+    init:
+      platform: h2
+      mode: embedded
+      schema-locations: classpath:sql/schema-h2.sql
+#      data-locations: classpath:sql/data-h2.sql
