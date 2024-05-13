@@ -1,90 +1,130 @@
-CREATE TABLE IF NOT EXISTS member
+CREATE TABLE IF NOT EXISTS MEMBERS
 (
-    id       BIGINT AUTO_INCREMENT PRIMARY KEY,
-    email    VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    phone    VARCHAR(255) NOT NULL UNIQUE,
+    id         BIGINT AUTO_INCREMENT,
+    login_id   VARCHAR(255) NOT NULL UNIQUE,
+    password   VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
-CREATE INDEX idx_member_email ON member (email);
-CREATE INDEX idx_member_phone ON member (phone);
-
-CREATE TABLE IF NOT EXISTS movie
+CREATE TABLE IF NOT EXISTS MOVIES
 (
-    id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id          BIGINT AUTO_INCREMENT,
     title       VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    bannerUrl   VARCHAR(255) NOT NULL,
-    genre       VARCHAR(255) NOT NULL,
     releaseDate date         NOT NULL,
-    duration    INT          NOT NULL
+    duration    INT          NOT NULL,
+    created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS theater
+CREATE TABLE IF NOT EXISTS CINEMAS
 (
-    id   BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    id         BIGINT AUTO_INCREMENT,
+    name       VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS auditorium
+CREATE TABLE IF NOT EXISTS SCREENS
 (
-    id        BIGINT AUTO_INCREMENT PRIMARY KEY,
-    theaterId BIGINT       NOT NULL,
-    name      VARCHAR(255) NOT NULL
+    id         BIGINT AUTO_INCREMENT,
+    cinema_id  BIGINT       NOT NULL COMMENT 'CINEMAS table reference id',
+    name       VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 );
+CREATE INDEX IF NOT EXISTS IDX_SCREENS_CINEMA_ID ON SCREENS (cinema_id);
 
-CREATE INDEX idx_auditorium_theater ON auditorium (theaterId);
-
-CREATE TABLE IF NOT EXISTS seat
+CREATE TABLE IF NOT EXISTS SEATS
 (
-    id           BIGINT AUTO_INCREMENT PRIMARY KEY,
-    auditoriumId BIGINT       NOT NULL,
-    seatRow      VARCHAR(255) NOT NULL,
-    seatColumn   INT          NOT NULL
+    id         BIGINT AUTO_INCREMENT,
+    screen_id  BIGINT      NOT NULL COMMENT 'SCREENS table reference id',
+    row_name   VARCHAR(10) NOT NULL COMMENT 'A-Z',
+    col_num    INT         NOT NULL,
+    created_at TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 );
+CREATE INDEX IF NOT EXISTS IDX_SEATS_SCREEN_ID ON SEATS (screen_id);
+CREATE INDEX IF NOT EXISTS IDX_SEATS_ROW_NUM ON SEATS (row_name);
 
-CREATE INDEX idx_seat_auditorium ON seat (auditoriumId);
-CREATE INDEX idx_seat_row_column ON seat (seatRow, seatColumn);
 
-CREATE TABLE IF NOT EXISTS showing
+CREATE TABLE IF NOT EXISTS SCREENINGS
 (
-    id           BIGINT AUTO_INCREMENT PRIMARY KEY,
-    movieId      BIGINT         NOT NULL,
-    auditoriumId BIGINT         NOT NULL,
-    showDate     date           NOT NULL,
-    startTime    time           NOT NULL,
-    endTime      time           NOT NULL,
-    price        decimal(10, 2) NOT NULL
+    id         BIGINT AUTO_INCREMENT,
+    movie_id   BIGINT         NOT NULL COMMENT 'MOVIES table reference id',
+    screen_id  BIGINT         NOT NULL COMMENT 'SCREENS table reference id',
+    price      decimal(10, 2) NOT NULL,
+    start_at   TIMESTAMP      NOT NULL,
+    end_at     TIMESTAMP      NOT NULL,
+    created_at TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 );
+CREATE INDEX IF NOT EXISTS IDX_SCREENINGS_MOVIE_ID ON SCREENINGS (movie_id);
+CREATE INDEX IF NOT EXISTS IDX_SCREENINGS_SCREEN_ID ON SCREENINGS (screen_id);
 
-CREATE INDEX idx_showing_movie ON showing (movieId);
-CREATE INDEX idx_showing_auditorium ON showing (auditoriumId);
-CREATE INDEX idx_showing_date ON showing (showDate);
 
-CREATE TABLE IF NOT EXISTS reservation
+CREATE TABLE IF NOT EXISTS SCREENING_SEATS
 (
-    id        BIGINT AUTO_INCREMENT PRIMARY KEY,
-    memberId  BIGINT    NOT NULL,
-    showingId BIGINT    NOT NULL,
-    seatId    BIGINT    NOT NULL,
-    createdAt timestamp NOT NULL
+    id           BIGINT AUTO_INCREMENT,
+    screening_id BIGINT      NOT NULL COMMENT 'SCREENINGS table reference id',
+    seat_id      BIGINT      NOT NULL COMMENT 'SEATS table reference id',
+    status       VARCHAR(40) NOT NULL DEFAULT 'AVAILABLE' COMMENT 'AVAILABLE, RESERVED, SOLD',
+    created_at   TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at   TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    version      BIGINT      NOT NULL DEFAULT 1 COMMENT '충돌방지 목적',
+    PRIMARY KEY (id)
 );
+CREATE INDEX IF NOT EXISTS IDX_SCREENING_SEATS_SCREENING_ID ON SCREENING_SEATS (screening_id);
+CREATE INDEX IF NOT EXISTS IDX_SCREENING_SEATS_SEAT_ID ON SCREENING_SEATS (seat_id);
+CREATE INDEX IF NOT EXISTS IDX_SCREENING_SEATS_STATUS ON SCREENING_SEATS (status);
 
-CREATE INDEX idx_reservation_member ON reservation (memberId);
-CREATE INDEX idx_reservation_showing ON reservation (showingId);
-CREATE INDEX idx_reservation_seat ON reservation (seatId);
 
-CREATE TABLE IF NOT EXISTS payment
+CREATE TABLE IF NOT EXISTS BOOKINGS
 (
-    id              BIGINT AUTO_INCREMENT PRIMARY KEY,
-    reservationId   BIGINT         NOT NULL,
-    status          VARCHAR(255)   NOT NULL,
-    amount          decimal(10, 2) NOT NULL,
-    paymentMethod   VARCHAR(255)   NOT NULL,
-    createAt        timestamp      NOT NULL,
-    paymentExpireAt timestamp      NOT NULL,
-    completedAt     timestamp
+    id          BIGINT AUTO_INCREMENT,
+    member_id   BIGINT    NOT NULL COMMENT 'MEMBERS table reference id',
+    status      VARCHAR(40)        DEFAULT 'RESERVED' COMMENT 'RESERVED, PAID, CANCELLED',
+    reserved_at TIMESTAMP          DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
 );
+CREATE INDEX IF NOT EXISTS IDX_BOOKINGS_MEMBER_ID ON BOOKINGS (member_id);
+CREATE INDEX IF NOT EXISTS IDX_BOOKINGS_STATUS ON BOOKINGS (status);
 
-CREATE INDEX idx_payment_reservation ON payment (reservationId);
+
+CREATE TABLE IF NOT EXISTS BOOKING_ITEMS
+(
+    id                BIGINT AUTO_INCREMENT,
+    booking_id        BIGINT    NOT NULL COMMENT 'BOOKINGS table reference id',
+    screening_seat_id BIGINT    NOT NULL COMMENT 'SCREENING_SEATS table reference id',
+    created_at        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+CREATE INDEX IF NOT EXISTS IDX_BOOKING_ITEMS_BOOKING_ID ON BOOKING_ITEMS (booking_id);
+CREATE INDEX IF NOT EXISTS IDX_BOOKING_ITEMS_SCREENING_SEAT_ID ON BOOKING_ITEMS (screening_seat_id);
+
+CREATE TABLE IF NOT EXISTS PAYMENTS
+(
+    id                       BIGINT AUTO_INCREMENT,
+    member_id                BIGINT         NOT NULL,
+    transaction_reference_id BIGINT         NOT NULL COMMENT 'BOOKINGS table reference id',
+    transaction_amount       decimal(10, 2) NOT NULL,
+    status                   VARCHAR(40)    NOT NULL DEFAULT 'PAID' NOT NULL COMMENT 'PAID, CANCELLED',
+    paid_at                  TIMESTAMP      NOT NULL,
+    cancelled_at             TIMESTAMP,
+    created_at               TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at               TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+CREATE INDEX IF NOT EXISTS IDX_PAYMENTS_MEMBER_ID ON PAYMENTS (member_id);
+CREATE INDEX IF NOT EXISTS IDX_PAYMENTS_TRANSACTION_REFERENCE_ID ON PAYMENTS (transaction_reference_id);
+CREATE INDEX IF NOT EXISTS IDX_PAYMENTS_STATUS ON PAYMENTS (status);
