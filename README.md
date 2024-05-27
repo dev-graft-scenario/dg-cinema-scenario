@@ -5,6 +5,8 @@ DEV-GRAFT가 영화관 운영을 시작했습니다!
 
 - [Event Storming](https://miro.com/app/embed/uXjVOx1AX14=/?pres=1&frameId=3458764553420482599&embedId=695691095149)
 
+시나리오 개발에 참가하여 개발을 연습하고 싶다면 Projects > dg-cinema-scenario 를 확인해주세요.
+
 상세문서는 제거할 예정입니다.
 DDD를 기반으로 설계할 수 있도록 EventStorming만 제공할 예정입니다.
 
